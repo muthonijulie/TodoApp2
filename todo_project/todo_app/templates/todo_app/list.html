@@ -12,12 +12,10 @@
         {% for task in tasks %}
         <li>
           <p>Title:<a href="{% url 'detail' task.id%}">{{task.title}}</a></p>
-          <p>Description:{{task.description}}</p>
-          <p>Due:{{task.due_date}}</p>
-          <p>Completed:{{task.status}}</p>
         </li>
         {% endfor %}
       </ol>
+      <a href="{% url 'create' %}">Create new task</a>
     </div>
   </body>
 </html>
