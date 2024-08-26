@@ -6,7 +6,7 @@ class Task(models.Model):
     description=models.TextField(max_length=200)
     status=models.BooleanField(default=False,verbose_name='Completed')
     created_at=models.DateField(auto_now_add=True)
-    due_date=models.DateField(auto_now=True)
+    due_date=models.DateField()
 
     def __str__(self):
         return f"Title:{self.title}\nStatus{self.status}"
