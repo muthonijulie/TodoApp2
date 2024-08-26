@@ -13,6 +13,9 @@
       <p>Due:{{task.due_date}}</p>
       <p>Completed:{{task.status}}</p>
     </div>
+    <a href="{% url 'update' task.id %}">Update task</a>
+    <a href="{% url 'delete' task.id %}">Delete task</a>
+
     <a href="{%url 'list' %}">Back to task list</a>
   </body>
 </html>
