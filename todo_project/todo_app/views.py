@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse
+from .models import Task
 
 # Create your views here.
 
@@ -11,4 +12,14 @@ def index(request):
         'name':'Muthoni Julius'
     }
     return render(request,'todo_app/index.html',context)
+
+def task_list(request):
+    tasks= Task.objects.all()
+    return render(request,'todo_app/list.html',{'tasks':tasks})
+
+def task_detail(request,id):
+    task=get_object_or_404(Task,id=id)
+    return render(request,'todo_app/detail.html',{'task':task})
+
+ 
 

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width-device-width,initial-scale-1.0" />
+    <title>Todo App:Detail view</title>
+  </head>
+  <body>
+    <h1>Task item</h1>
+    <div>
+      <p>Title: {{task.title}}</p>
+      <p>Description:{{task.description}}</p>
+      <p>Due:{{task.due_date}}</p>
+      <p>Completed:{{task.status}}</p>
+    </div>
+    <a href="{%url 'list' %}">Back to task list</a>
+  </body>
+</html>
