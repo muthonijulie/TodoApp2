@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width-device-width,initial-scale-1.0" />
+    <title>Todo App:List of tasks</title>
+  </head>
+  <body>
+    <h1>List of tasks</h1>
+    <div>
+      <ol>
+        {% for task in tasks %}
+        <li>
+          <p>Title:<a href="{% url 'detail' task.id%}">{{task.title}}</a></p>
+          <p>Description:{{task.description}}</p>
+          <p>Due:{{task.due_date}}</p>
+          <p>Completed:{{task.status}}</p>
+        </li>
+        {% endfor %}
+      </ol>
+    </div>
+  </body>
+</html>
