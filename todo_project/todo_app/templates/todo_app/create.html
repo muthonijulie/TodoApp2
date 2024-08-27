@@ -1,17 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width-device-width,initial-scale-1.0" />
-    <title>Todo App:Create</title>
-  </head>
-  <body>
-    <h1>Add a new task</h1>
-    <div>
-      <form action="{% url 'create' %}" method="post">
+{% extends 'base.html' %} {% block content %}
+<section class="vh-100 gradient-custom-2">
+  <div class="container py-5">
+    <h1 class="mb-4">Task Create Page</h1>
+    <div class="card">
+      <div class="card-header">
         {% csrf_token %} {{form.as_p}}
-        <button type="submit">Create Task</button>
-      </form>
+        <a href="{% url 'create' %}" class="btn btn-primary mt-3"
+          >Create a new task</a
+        >
+      </div>
     </div>
-  </body>
-</html>
+  </div>
+</section>
+{% endblock content %}

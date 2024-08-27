@@ -1,21 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width-device-width,initial-scale-1.0" />
-    <title>Todo App:Detail view</title>
-  </head>
-  <body>
-    <h1>Task item</h1>
-    <div>
-      <p>Title: {{task.title}}</p>
-      <p>Description:{{task.description}}</p>
-      <p>Due:{{task.due_date}}</p>
-      <p>Completed:{{task.status}}</p>
+{% extends 'base.html' %} {% block content %}
+<section class="vh-100 gradient-custom-2">
+  <div class="container py-5">
+    <h1 class="mb-4">Task Detail Page</h1>
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">Task: {{ task.title }}</h2>
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          <strong>Description:</strong> {{ task.description }}
+        </p>
+        <p class="card-text"><strong>Status:</strong> {{ task.status }}</p>
+        <p class="card-text">
+          <strong>Created On:</strong> {{ task.created_at }}
+        </p>
+        <p class="card-text"><strong>Due Date:</strong> {{ task.due_date }}</p>
+        <div class="mt-4">
+          <h3 class="mb-3">Actions</h3>
+          <a href="{% url 'update' task.id %}" class="btn btn-warning me-2"
+            >Update</a
+          >
+          <a href="{% url 'delete' task.id %}" class="btn btn-danger me-2"
+            >Delete</a
+          >
+          <a href="{% url 'create' %}" class="btn btn-primary"
+            >Create a new task</a
+          >
+        </div>
+      </div>
     </div>
-    <a href="{% url 'update' task.id %}">Update task</a>
-    <a href="{% url 'delete' task.id %}">Delete task</a>
-
-    <a href="{%url 'list' %}">Back to task list</a>
-  </body>
-</html>
+    <div class="mt-4">
+      <a href="{% url 'list' %}" class="btn btn-secondary">Back to Task List</a>
+    </div>
+  </div>
+</section>
+{% endblock content %}

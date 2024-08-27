@@ -1,18 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width-device-width,initial-scale-1.0" />
-    <title>Todo App:Delete</title>
-  </head>
-  <body>
-    <h1>Delete task</h1>
-    <div>
-      <form method="post">
-        {% csrf_token %}
-        <p>Are you sure you want to delete {{task.title}}?</p>
-        <button type="submit">Yes,Delete Task</button>
-      </form>
+{% extends 'base.html' %} {% block content %}
+    <section class="vh-100 gradient-custom-2">
+      <div class="container py-5">
+        <h1 class="mb-4">Task Delete Page</h1>
+         <div class="card">
+          <div class="card-header">
+          {% csrf_token %}
+            <h3 class="card-title">Are you sure you want to delete{{ task.title }}?</h3>
+          </div>
+     <a href="{% url 'delete' task.id %}" class="btn btn-danger me-2"
+              > Yes,Delete Task</a>
     </div>
-  </body>
-</html>
+    </div>
+    </div>
+    </section>
+  {% endblock content %}
