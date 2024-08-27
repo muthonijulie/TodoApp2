@@ -1,26 +1,19 @@
 from django.shortcuts import render,get_object_or_404,redirect
-from django.http import HttpResponse
 from .models import Task
 from .forms import TaskCreateForm
-
 # Create your views here.
-
-def hello(request):
-    return HttpResponse("<h1>Hello there.This our basic todo app</h1>")
-
-def index(request):
-    context={
-        'name':'Muthoni Julius'
-    }
-    return render(request,'todo_app/index.html',context)
 
 def task_list(request):
     tasks= Task.objects.all()
-    return render(request,'todo_app/list.html',{'tasks':tasks})
+    title='List'
+    return render(request,'todo_app/list.html',{'tasks':tasks,'title':title})
 
+   
 def task_detail(request,id):
     task=get_object_or_404(Task,id=id)
-    return render(request,'todo_app/detail.html',{'task':task})
+    title='Detail'
+    return render(request,'todo_app/detail.html',{'task':task,'title':title})
+
 
 def task_create(request):
     if request.method == 'POST':
@@ -30,7 +23,8 @@ def task_create(request):
             return redirect('list')
     else:
             form=TaskCreateForm()
-    return render(request,'todo_app/create.html',{'form':form})
+            title='Create'
+    return render(request,'todo_app/create.html',{'form':form,'title':title})
 
 def task_update(request,id):
      task=get_object_or_404(Task,id=id)
@@ -41,14 +35,15 @@ def task_update(request,id):
            return redirect('list')
      else:
           form=TaskCreateForm(instance=task)
+          title='Update'
 
-     return render(request,'todo_app/update.html',{'form':form})
+     return render(request,'todo_app/update.html',{'form':form,'title':title})
 
 def task_delete(request,id):
     task=get_object_or_404(Task, id=id)
     if request.method=='POST':
         task.delete()
         return redirect('list')
+    title='Delete'
     
-    return render(request,'todo_app/delete.html',{'task':task})
-
+    return render(request,'todo_app/delete.html',{'task':task,'title':title})
