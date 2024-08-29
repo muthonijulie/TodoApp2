@@ -15,6 +15,26 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   </head>
   <body>
+    <header>
+      <h1>{{user.username}} is authenticated</h1>
+      <nav>
+        <ul>
+          {% if user.is_authenticated %}
+          <li>
+            <a href="{% url 'auth:logout' %}" class="my-3 p-3 btn btn-danger"
+              >Logout</a
+            >
+          </li>
+          {%else %}
+          <li>
+            <a href="{% url 'auth:login' %}" class="my-3 p-3 btn btn-primary"
+              >Login</a
+            >
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+    </header>
     {% block content %} {% endblock content %}
     <footer>Copyrights| Janja Programmers</footer>
   </body>

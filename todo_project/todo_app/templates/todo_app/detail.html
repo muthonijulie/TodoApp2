@@ -23,9 +23,11 @@
           <a href="{% url 'delete' task.id %}" class="btn btn-danger me-2"
             >Delete</a
           >
+          {% comment %}
           <a href="{% url 'create' %}" class="btn btn-primary"
             >Create a new task</a
           >
+          {% endcomment %}
         </div>
       </div>
     </div>

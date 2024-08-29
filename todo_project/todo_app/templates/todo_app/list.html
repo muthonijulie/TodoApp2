@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% block content %} {% load task_filters %}
 <section class="vh-100 gradient-custom-2">
   <div class="container py-5">
     <h1 class="mb-4">LIST OF TASKS</h1>
@@ -30,13 +30,33 @@
                 </td>
                 <td class="align-middle col-2">{{ task.created_at }}</td>
                 <td class="align-middle col-2">
-                  <span class="badge bg-success fs-6">{{ task.due_date }}</span>
+                  <span class="badge bg-success fs-6">{{ task_status }}</span>
                 </td>
               </tr>
               {% endfor %}
             </tbody>
           </table>
-          <a href="{% url 'create' %}" class="btn btn-primary mt-3"
+          <div class="paginator my-4">
+            <span class="step-links">
+              {% if tasks.has_previous %}
+              <a href="?page=1">&laquo;First</a>
+              <a href="?page={{tasks.previous_page_number}}">Previous</a>
+              {% endif %}
+
+              <span class="current">
+                Page{{tasks.number}} of {{tasks.paginator.num_pages}}
+              </span>
+
+              {% if tasks.has_next %}
+
+              <a href="?page={{tasks.next_page_number}}">next</a>
+              <a href="?page=tasks.paginator.num_pages">&raquo;Last</a>
+              {% endif %}
+            </span>
+          </div>
+          <a
+            href="{% url 'create' %}"
+            class="btn btn-primary p-3 text-center my-3"
             >Create a new task</a
           >
         </div>
