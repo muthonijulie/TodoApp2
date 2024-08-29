@@ -35,10 +35,11 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.messages',
+    'django.contrib.messages',#
     'django.contrib.staticfiles',
     'todo_app',
     'bootstrap5',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -124,3 +125,35 @@ STATICFILES_DIRS=[BASE_DIR/'assets']
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#authentication
+LOGIN_REDIRECT_URL='/'
+LOGOUT_REDIRECT_URL='/auth/login/'
+LOGIN_URL='/login/'
+
+if DEBUG:
+    INTERNAL_IPS=['127.0.0.1']
+    MIDDLEWARE += [
+        'debug_toolbar.middleware.DebugToolbarMiddleware']
+    INSTALLED_APPS +=[
+        'debug_toolbar',
+    ]
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "file": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "filename": "logs/debug",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["file"],
+            "level": "DEBUG",
+            "propagate": True,
+        },
+    },
+}
