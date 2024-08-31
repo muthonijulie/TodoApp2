@@ -3,11 +3,15 @@ from .models import Task
 from .forms import TaskCreateForm
 from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage
 from django.contrib.auth.decorators import login_required
+
+
+
+
 # Create your views here.
 
 def task_list(request):
     tasks= Task.objects.all()
-    paginator=Paginator(tasks,4,orphans=4,allow_empty_first_page=True)
+    paginator=Paginator(tasks,3,orphans=4,allow_empty_first_page=True)
 
     page=request.GET.get('page')
 
@@ -43,7 +47,7 @@ def task_create(request):
 def task_update(request,id):
      task=get_object_or_404(Task,id=id)
      if request.method=='POST':
-          form=TaskCreateForm(request.POST,instance=task)
+          form=TaskCreateForm(request.POST or None,instance=task)
           if form.is_valid():
            form.save()
            return redirect('list')
@@ -51,7 +55,8 @@ def task_update(request,id):
           form=TaskCreateForm(instance=task)
           title='Update'
 
-     return render(request,'todo_app/update.html',{'form':form,'title':title})
+     return render(request,'todo_app/update.html',{'form':form,'title':title,'task':task})
+ 
 @login_required
 def task_delete(request,id):
     task=get_object_or_404(Task, id=id)
@@ -60,4 +65,4 @@ def task_delete(request,id):
         return redirect('list')
     title='Delete'
     
-    return render(request,'todo_app/delete.html',{'task':task,'title':title})
+    return render(request,'todo_app/delete.html',{'task':task,'title':title,'task':task})

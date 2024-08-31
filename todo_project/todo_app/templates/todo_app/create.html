@@ -1,16 +1,27 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% load django_bootstrap5 %} {% block content %}
 <section class="vh-100 gradient-custom-2">
   <div class="container py-5">
-    <h1 class="mb-4">Task Create Page</h1>
+    <h1 class="mb-4">{{ title }} Task</h1>
     <div class="card">
       <div class="card-header">
-        {% csrf_token %} {{form.as_p}}
-        <a href="{% url 'create' %}" class="btn btn-primary mt-3"
-          >Create a new task</a
-        >
-        <a href="{% url 'list' %}" class="btn btn-secondary"
-          >Back to Task List</a
-        >
+        <form method="POST" action="{% url 'create' %}">
+          {% csrf_token %}
+          <div class="row">
+            {% for field in form %}
+            <div class="col-8">{% bootstrap_field field %}</div>
+            {% endfor %}
+          </div>
+          <div class="row mt-3">
+            <div class="col-4">
+              <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+            <div class="col-4">
+              <a href="{% url 'list' %}" class="btn btn-secondary"
+                >Back to list</a
+              >
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>

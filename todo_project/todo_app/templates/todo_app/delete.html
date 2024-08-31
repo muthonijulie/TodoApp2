@@ -1,16 +1,23 @@
 {% extends 'base.html' %} {% block content %}
-    <section class="vh-100 gradient-custom-2">
-      <div class="container py-5">
-        <h1 class="mb-4">Task Delete Page</h1>
-         <div class="card">
-          <div class="card-header">
+<section class="vh-100 gradient-custom-2">
+  <div class="container py-5">
+    <h1 class="mb-4">Task Delete Page</h1>
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">
+          Are you sure you want to delete "{{ task.title }}"?
+        </h3>
+      </div>
+      <div class="card-body">
+        <form method="POST" action="{% url 'delete' task.id %}">
           {% csrf_token %}
-            <h3 class="card-title">Are you sure you want to delete{{ task.title }}?</h3>
-          </div>
-     <a href="{% url 'delete' task.id %}" class="btn btn-danger me-2"
-              > Yes,Delete Task</a>
+          <button type="submit" class="btn btn-danger me-2">
+            Yes, Delete Task
+          </button>
+          <a href="{% url 'list' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+      </div>
     </div>
-    </div>
-    </div>
-    </section>
-  {% endblock content %}
+  </div>
+</section>
+{% endblock content %}
