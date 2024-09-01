@@ -30,7 +30,9 @@
                 </td>
                 <td class="align-middle col-2">{{ task.created_at }}</td>
                 <td class="align-middle col-2">
-                  <span class="badge bg-success fs-6">{{ task_status }}</span>
+                  <span class="badge bg-success fs-6"
+                    >{{ task.status|task_status }}</span
+                  >
                 </td>
               </tr>
               {% endfor %}
