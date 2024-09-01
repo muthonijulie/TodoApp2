@@ -52,7 +52,7 @@ def task_update(request,id):
            form.save()
            return redirect('list')
      else:
-          form=TaskCreateForm(instance=task)
+          form=TaskCreateForm(intance=task)
           title='Update'
 
      return render(request,'todo_app/update.html',{'form':form,'title':title,'task':task})
