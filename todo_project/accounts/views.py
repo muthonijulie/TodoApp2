@@ -12,7 +12,7 @@ def register(request):
             return redirect('list')
         else :
               form=UserCreationForm()
-        return render(request,'accounts/register.htmk',{'form':form})
+        return render(request,'accounts/register.html',{'form':form})
     
 def user_login(request):
             if request.method=='POST':
