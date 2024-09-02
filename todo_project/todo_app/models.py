@@ -11,5 +11,5 @@ class Task(models.Model):
     def __str__(self):
         return f"Title:{self.title}\nStatus{self.status}"
 
-class author(models.Model):
+
     
