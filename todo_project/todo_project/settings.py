@@ -51,6 +51,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+     #custom middlewares
+    'todo_app.middleware.CustomHeaderMiddleware'
 ]
 
 ROOT_URLCONF = 'todo_project.urls'
